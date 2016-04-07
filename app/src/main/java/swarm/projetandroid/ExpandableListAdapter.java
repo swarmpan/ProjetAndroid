@@ -1,11 +1,16 @@
 package swarm.projetandroid;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.List;
@@ -19,12 +24,17 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     private List<String> _listDataHeader; // header titles
     // child data in format of header title, child title
     private HashMap<String, List<String>> _listDataChild;
+    private JSONObject aliments;
+    private List<String> alimentsChecked;
 
     public ExpandableListAdapter(Context context, List<String> listDataHeader,
-                                 HashMap<String, List<String>> listChildData) {
+                                 HashMap<String, List<String>> listChildData,
+                                 JSONObject aliments, List<String> alimentsChecked) {
         this._context = context;
         this._listDataHeader = listDataHeader;
         this._listDataChild = listChildData;
+        this.aliments = aliments;
+        this.alimentsChecked = alimentsChecked;
     }
 
     @Override
@@ -54,6 +64,22 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                 .findViewById(R.id.listItem);
 
         txtListChild.setText(childText);
+
+
+        try {
+            for (int aliment = 0; aliment < alimentsChecked.size(); aliment++) {
+
+                String alimentName = alimentsChecked.get(aliment);
+                JSONArray composants = aliments.getJSONArray(alimentName);
+
+                if (composants.toString().contains(childText.toLowerCase())) {
+                    txtListChild.setBackgroundColor(convertView.getResources().getColor(R.color.colorPrimary));
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
         return convertView;
     }
 

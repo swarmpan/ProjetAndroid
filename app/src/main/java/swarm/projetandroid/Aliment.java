@@ -6,8 +6,7 @@ public class Aliment {
     boolean checked;
 
     public Aliment(String name, boolean checked) {
-        String fullName = name;
-        this.name = name.substring(0, 1).toUpperCase() + name.substring(1);
+        this.name = name;
         this.checked = checked;
     }
 

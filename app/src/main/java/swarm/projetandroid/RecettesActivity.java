@@ -20,11 +20,11 @@ public class RecettesActivity extends AppCompatActivity {
     List<String> alimentsChecked;
     JSONObject recettesJson;
     JSONArray nomsRecettes;
-    JSONObject aliments;
     ExpandableListAdapter listAdapter;
     ExpandableListView expListView;
     List<String> listDataHeader;
     HashMap<String, List<String>> listDataChild;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,11 +35,13 @@ public class RecettesActivity extends AppCompatActivity {
         String pays = intent.getStringExtra("pays");
         alimentsChecked = intent.getStringArrayListExtra("aliments");
         try {
+            JSONObject aliments = JSONParser.parseJson("aliments.json", getAssets());
             recettesJson = JSONParser.parseJson("recettes.json", getAssets()).getJSONObject(pays);
             if (recettesJson != null) {
                 nomsRecettes = recettesJson.names();
                 prepareListData();
-                listAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild);
+                listAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild,
+                        aliments, alimentsChecked);
                 expListView = (ExpandableListView) findViewById(R.id.expandableListView);
                 expListView.setAdapter(listAdapter);
             }
@@ -66,7 +68,8 @@ public class RecettesActivity extends AppCompatActivity {
                 List<String> ingredients = new ArrayList<>();
                 JSONArray ingredientsJson = recettesJson.getJSONArray(nomsRecettes.getString(i));
                 for (int j = 0; j < ingredientsJson.length(); j++) {
-                    ingredients.add(ingredientsJson.getString(j));
+                    String ingredient = ingredientsJson.getString(j);
+                    ingredients.add(ingredient);
                 }
 
                 listDataChild.put(listDataHeader.get(i), ingredients);
