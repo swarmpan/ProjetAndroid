@@ -37,7 +37,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ChoiceActivity"></activity>
+
+        <activity android:name=".ChoiceActivity"
+            android:label="@string/title_activity_aliments">
+        </activity>
+
+        <activity android:name=".RecettesActivity"
+            android:label="@string/title_activity_recettes">
+
+        </activity>
     </application>
 
 </manifest>

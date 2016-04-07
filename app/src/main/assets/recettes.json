@@ -1,0 +1,49 @@
+{
+  "États-Unis": {
+    "Pancake": [
+      "oeuf",
+      "beurre",
+      "lait",
+      "farine",
+      "levure",
+      "sucre",
+      "sucre vanillé",
+      "sel"
+    ]
+  },
+
+  "Russie": {
+    "Okrochka": [
+      "concombre",
+      "fenouil",
+      "yaourt nature",
+      "oeuf dur",
+      "cidre",
+      "moutarde",
+      "sel",
+      "poivre"
+    ]
+  },
+
+  "France": {
+    "Bouillabaisse": [
+      "lotte",
+      "rascasse",
+      "tomates",
+      "oignons",
+      "poireaux",
+      "herbes de provence",
+      "poivre",
+      "sel"
+    ],
+    "Daube": [
+      "carotte",
+      "vin rouge",
+      "échalote",
+      "oignon",
+      "girofle",
+      "sel",
+      "daube"
+    ]
+  }
+}
