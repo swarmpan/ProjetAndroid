@@ -20,6 +20,7 @@ public class RecettesActivity extends AppCompatActivity {
     List<String> alimentsChecked;
     JSONObject recettesJson;
     JSONArray nomsRecettes;
+    JSONObject aliments;
     ExpandableListAdapter listAdapter;
     ExpandableListView expListView;
     List<String> listDataHeader;
